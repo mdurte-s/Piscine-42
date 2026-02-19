@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_point.h                                         :+:      :+:    :+:   */
+/*   ft_first_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 12:14:48 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/02/17 18:15:03 by mdurte-s         ###   ########.fr       */
+/*   Created: 2026/02/19 09:41:17 by mdurte-s          #+#    #+#             */
+/*   Updated: 2026/02/19 10:14:46 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_POINT_H
-# define FT_POINT_H
+#include <unistd.h>
 
-typedef struct s_point
+int	main(int argc, char **argv)
 {
-	int	x;
-	int	y;
-}	t_point;
+	int	i;
 
-#endif
+	if (argc == 2)
+	{
+		while ((argv[1][i] == ' ' || argv[1][i] == '\t')
+			&& argv[1][i] != '\0')
+			i++;
+		while (argv[1][i] != ' ' && argv[1][i] != '\t'
+			&& argv[1][i] != '\0')
+		{
+			write(1, &argv[1][i], 1);
+			i++;
+		}
+	}
+	write(1, "\n", 1);
+	return (0);
+}

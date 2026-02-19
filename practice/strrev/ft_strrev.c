@@ -1,22 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 09:27:31 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/02/17 20:27:21 by mdurte-s         ###   ########.fr       */
+/*   Created: 2026/02/18 10:37:16 by mdurte-s          #+#    #+#             */
+/*   Updated: 2026/02/19 09:31:31 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+#include <stdio.h>
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
+char	*ft_strrev(char *str);
 int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
 
-#endif
+int	main(int argc, char **argv)
+{
+	(void)argc;
+	printf("%s\n", ft_strrev(argv[1]));
+	return (0);
+}
+
+char	*ft_strrev(char *str)
+{
+	int		i;
+	int		n;
+	char	c;
+
+	i = 0;
+	n = ft_strlen(str);
+	while (i < n)
+	{
+		c = str[i];
+		str[i] = str[n - 1];
+		str[n - 1] = c;
+		i++;
+		n--;
+	}
+	return (str);
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}

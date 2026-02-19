@@ -1,52 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_words.c                                      :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/14 11:42:10 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/02/14 11:52:59 by mdurte-s         ###   ########.fr       */
+/*   Created: 2026/02/19 09:22:17 by mdurte-s          #+#    #+#             */
+/*   Updated: 2026/02/19 09:30:55 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-//counts words separated by spaces, new lines and tabs.
-
-int	count_words(char *str);
+char	*ft_strcpy(char *s1, char *s2);
 
 int	main(int argc, char **argv)
 {
 	(void)argc;
-	printf("number of words: %d\n", count_words(argv[1]));
+	ft_strcpy(argv[1], argv[2]);
+	printf("%s\n", argv[1]);
 	return (0);
 }
 
-int	count_words(char *str)
+char	*ft_strcpy(char *s1, char *s2)
 {
 	int	i;
-	int	j;
-	int	c;
 
 	i = 0;
-	c = 0;
-	while (str[i] != '\0')
+	while (s2[i] != '\0')
 	{
-		if (str[i] != ' '
-			&& str[i] != '\n'
-			&& str[i] != '\t'
-			&& str[i] != '\0')
-		{
-			c++;
-			j = 1;
-			while (str[i + j] != ' '
-				&& str[i + j] != '\n'
-				&& str[i + j] != '\t'
-				&& str[i + j] != '\0')
-				j++;
-		}
-		i = i + j;
+		s1[i] = s2[i];
+		i++;
 	}
-	return (c);
+	s1[i] = '\0';
+	return (s1);
 }

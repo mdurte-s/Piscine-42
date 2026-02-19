@@ -1,62 +1,72 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/14 19:08:58 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/02/15 18:42:12 by mdurte-s         ###   ########.fr       */
+/*   Created: 2026/02/15 16:45:12 by mdurte-s          #+#    #+#             */
+/*   Updated: 2026/02/15 18:41:08 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-int	*ft_range(int start, int end);
-int	ft_atoi(char *str);
+char	*ft_itoa(int n);
+int		ft_modulo(int n);
+int		ft_intlen(int n);
+int		ft_atoi(char *str);
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	c;
-	int	start;
-	int	end;
-
-	if (argc != 3)
+	if (argc != 2)
 		return (0);
-	start = ft_atoi(argv[1]);
-	end = ft_atoi(argv[2]);
-	c = 1;
-	if (start > end)
-		c = -1;
-	printf("Range de %d a %d: %d", start, end, ft_range(start, end)[0]);
-	i = 0;
-	while (++i < (end - start) * c + 1)
-		printf(", %d", ft_range(start, end)[i]);
-	printf("\n");
+	printf("int: %d\n", ft_atoi(argv[1]));
+	printf("char: %s\n", ft_itoa(ft_atoi(argv[1])));
 	return (0);
 }
 
-int	*ft_range(int start, int end)
+char	*ft_itoa(int n)
 {
-	int	*array;
-	int	i;
-	int	c;
-	int	x;
+	char	*str;
+	int		i;
+	int		x;
 
-	c = 1;
-	if (start > end)
-		c = -1;
-	i = -1;
-	x = start;
-	array = (int *)malloc(((end - start) * c + 1) * sizeof(int));
-	while (++i < (end - start) * c + 1)
+	i = ft_intlen(n);
+	x = 0;
+	if (n < 0)
+		x = 1;
+	n = ft_modulo(n);
+	str = (char *)malloc((i + 1 + x) * sizeof(char));
+	str[0] = '-';
+	str[i + x] = '\0';
+	while (--i + x >= x)
 	{
-		array[i] = x;
-		x = x + c;
+		str[i + x] = n % 10 + 48;
+		n = n / 10;
 	}
-	return (array);
+	return (str);
+}
+
+int	ft_intlen(int n)
+{
+	int	i;
+
+	i = 1;
+	while (n > 9 || n < -9)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}
+
+int	ft_modulo(int n)
+{
+	if (n < 0)
+		return (n * -1);
+	return (n);
 }
 
 int	ft_atoi(char *str)

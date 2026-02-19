@@ -1,22 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_point.h                                         :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdurte-s <mdurte-s@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 12:14:48 by mdurte-s          #+#    #+#             */
-/*   Updated: 2026/02/17 18:15:03 by mdurte-s         ###   ########.fr       */
+/*   Created: 2026/02/19 16:10:44 by mdurte-s          #+#    #+#             */
+/*   Updated: 2026/02/19 16:39:04 by mdurte-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_POINT_H
-# define FT_POINT_H
+#include <stdio.h>
 
-typedef struct s_point
+int	max(int *tab, unsigned int len);
+
+int	main(void)
 {
-	int	x;
-	int	y;
-}	t_point;
+	int array[] = {1, 5, 8, 44, 8};
 
-#endif
+	printf("%d\n", max(array, sizeof(array) / sizeof(int)));
+	return (0);
+}
+
+int	max(int *tab, unsigned int len)
+{
+	unsigned int	i;
+	unsigned int	max;
+
+	i = 0;
+	max = 0;
+	while (i < len)
+	{
+		if (tab[i] > max)
+			max = tab[i];
+		i++;
+	}
+	return (max);
+}
